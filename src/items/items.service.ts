@@ -2,6 +2,7 @@
  * In-Memory Store
  */
 import {ItemInterface} from "./item.interface";
+
 /**
  * In-Memory Store
  */
@@ -30,11 +31,21 @@ export const items: Array<ItemInterface> = [
     }
 ];
 
-export const findAll = async(): Promise<any> => {
+export const findAll = async (): Promise<any> => {
     return items;
-}
+};
 export const addItem = async (item: ItemInterface): Promise<any> => {
     item.id = new Date().valueOf();
     items.push(item);
-}
+
+    return item;
+};
+export const updateItem = async (item: ItemInterface): Promise<any> => {
+    const index = items.findIndex(i => i.id === item.id);
+
+    items[index] = item;
+
+    return items;
+
+};
 

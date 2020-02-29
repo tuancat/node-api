@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import {ItemInterface} from "./item.interface";
-import {findAll} from "./items.service";
+import {addItem, findAll} from "./items.service";
 
 export const itemsRouter = express.Router();
 
@@ -12,4 +12,8 @@ itemsRouter.get('/', async (req, res )=>{
    } catch (e) {
 
    }
+});
+
+itemsRouter.post('/', async (req: Request, res: Response) => {
+   const newItem = await addItem(req.body.item);
 });
